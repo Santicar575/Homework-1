@@ -39,6 +39,6 @@ int main(){
     std::cin>>n;
     int** matrix = create_matrix(n);
     print_matrix(matrix,n);
-
     free_matrix(matrix,n);
+    return 0;
 }

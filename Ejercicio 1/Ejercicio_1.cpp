@@ -1,5 +1,19 @@
 #include <iostream>
 
+int** create_matrix(int n);
+void print_matrix(int** matrix, int n);
+void free_matrix(int** matrix, int n);
+
+int main(){
+    int n;
+    std::cout<<"Ingrese el tamaño de la matriz: ";
+    std::cin>>n;
+    int** matrix = create_matrix(n);
+    print_matrix(matrix,n);
+    free_matrix(matrix,n);
+    return 0;
+}
+
 int** create_matrix(int n){
     int** matriz = (int**)calloc(n,sizeof(int*));
     int curr = 1;
@@ -31,14 +45,4 @@ void free_matrix(int** matrix, int n){
         free(matrix[i]);
     }
     free(matrix);
-}
-
-int main(){
-    int n;
-    std::cout<<"Ingrese el tamaño de la matriz: ";
-    std::cin>>n;
-    int** matrix = create_matrix(n);
-    print_matrix(matrix,n);
-    free_matrix(matrix,n);
-    return 0;
 }

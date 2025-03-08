@@ -4,10 +4,21 @@
 
 enum Labels{DEBUG, INFO, WARNING, ERROR, CRITICAL};
 
-void logMessage(const std::string& mensaje, int NivelSeveridad){ //??????????????????????? const std::string& ???????????????????????
+void logMessage(const std::string& msg, int severity_level);
+
+int main(){
+    logMessage("Prueba DEBUG",DEBUG);
+    logMessage("Prueba INFO",INFO);
+    logMessage("Prueba WARNING",WARNING);
+    logMessage("Prueba ERROR",ERROR);
+    logMessage("Prueba CRITICAL",CRITICAL);
+    return 0;
+}
+
+void logMessage(const std::string& msg, int severity_level){ 
     std::ofstream outFile("log.txt",std::ios::app);
     if (outFile.is_open()) { 
-        switch (NivelSeveridad)
+        switch (severity_level)
         {
         case DEBUG:
             outFile<<"[DEBUG] ";
@@ -29,18 +40,11 @@ void logMessage(const std::string& mensaje, int NivelSeveridad){ //?????????????
             outFile.close();
             return;
         }
-        outFile<<mensaje<<'\n';
+        outFile<<msg<<'\n';
         outFile.close();
         }else{
-            std::cerr << "Error abriendo el archivo!\n";
+            std::cerr << "Error abriendo el archivo\n";
         }
 }
 
-int main(){
-    logMessage("Prueba DEBUG",DEBUG);
-    logMessage("Prueba INFO",INFO);
-    logMessage("Prueba WARNING",WARNING);
-    logMessage("Prueba ERROR",ERROR);
-    logMessage("Prueba CRITICAL",CRITICAL);
-    return 0;
-}
+

@@ -1,5 +1,0 @@
-[DEBUG] Prueba DEBUG
-[INFO] Prueba INFO
-[WARNING] Prueba WARNING
-[ERROR] Prueba ERROR
-[CRITICAL] Prueba CRITICAL

@@ -15,17 +15,28 @@ int main(){
 }
 
 int** create_matrix(int n){
-    int** matriz = (int**)calloc(n,sizeof(int*));
+    int** matrix = nullptr;
+    try{
+        matrix = new int*[n];
+    }catch(std::bad_alloc){
+        throw std::runtime_error("No hay memoria suficiente");
+    }
     int curr = 1;
+    int* line = nullptr;
     for(int i=0;i<n;i++){
-        int* line = (int*)calloc(n,sizeof(int));
+        try{
+            line = new int[n];
+        }catch(std::bad_alloc){
+            throw std::runtime_error("No hay memoria suficiente");
+        }
+        
         for(int j=0;j<n;j++){
             line[j] = curr;
             curr++;
         }
-        matriz[i] = line;
+        matrix[i] = line;
     }
-    return matriz;
+    return matrix;
 }
 
 void print_matrix(int** matrix, int n){
@@ -41,8 +52,11 @@ void print_matrix(int** matrix, int n){
 }
 
 void free_matrix(int** matrix, int n){
+    if(!matrix) return;
     for(int i = 0; i < n; i++){
-        free(matrix[i]);
+        delete matrix[i];
+        matrix[i] = nullptr;
     }
-    free(matrix);
+    delete matrix;
+    matrix = nullptr;
 }

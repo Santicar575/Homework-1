@@ -22,11 +22,9 @@ void erase(std::shared_ptr<list_t>& list, int pos);
 void print_list(std::shared_ptr<list_t>&list);
 
 int main(){
-    //Prueba create_node()
-    std::shared_ptr<node> new_node = create_node(1);
-    //Prueba push_front()
     std::shared_ptr<list_t> list = std::make_shared<list_t>();
-    push_front(list,new_node);
+    //Prueba push_front()
+    push_front(list,create_node(1));
     push_front(list,create_node(2));
     print_list(list);
     //Prueba push_back()
@@ -98,8 +96,26 @@ void insert(std::shared_ptr<list_t>& list, std::shared_ptr<node_t> node, int pos
 }
 
 void erase(std::shared_ptr<list_t>& list, int pos){
-    //int aux = 0;
-
+    int aux = 0;
+    std::shared_ptr<node_t> aux_node = list->head;
+    if(pos == 0){
+        list->head = list->head->next;
+        list->size--;
+        return;
+    }
+    if(pos >= list->size){
+        std::cout<<"No existe la posisicon "<<pos<<". Se elimino el ultimo nodo"<<std::endl;
+        //La nueva posicion es la ultima
+        pos = list->size -1;
+    }
+    //Avanzo hasta llegar al nodo anterior al que quiero borrar
+    while(aux != pos-1){
+        aux_node = aux_node->next;
+        aux++;
+    }
+    //Borro el nodo en la posicion pos
+    aux_node->next = aux_node->next->next;
+    list->size--;
 }
 
 void print_list(std::shared_ptr<list_t>& list){

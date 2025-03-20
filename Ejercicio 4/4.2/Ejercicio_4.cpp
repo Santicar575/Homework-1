@@ -16,15 +16,16 @@ constexpr bool equals(const char* str1, const char* str2,int curr_char){
 
 int main(){
     //Utilizo const char* en lugar de string ya que al no guardar ningun tipo de metadato es un poco mas rapido
+    auto startTime = std::chrono::high_resolution_clock::now();
     constexpr const char* str_1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     constexpr const char* str_2 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567891";
     constexpr bool res_1 = equals(str_1,str_1);
     constexpr bool res_2 = equals(str_1,str_2);
-
-    auto startTime = std::chrono::high_resolution_clock::now();
+    auto endTime = std::chrono::high_resolution_clock::now();
+    
     std::cout<<"Comparo str1 y str1: "<< ((res_1) ? "Son iguales" : "Son diferentes") << '\n';
     std::cout<<"Comparo str1 y str2: "<< ((res_2) ? "Son iguales" : "Son diferentes") << '\n';
-    auto endTime = std::chrono::high_resolution_clock::now();
+    
     auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
     std::cout << "Tardo " << elapsedTime.count() << " nanosegundos" << '\n';
 

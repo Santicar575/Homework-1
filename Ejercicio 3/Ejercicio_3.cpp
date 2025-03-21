@@ -76,16 +76,19 @@ void push_back(std::shared_ptr<list_t>& list, std::shared_ptr<node_t> node){
 
 void insert(std::shared_ptr<list_t>& list, std::shared_ptr<node_t> node, int pos){
     if(pos >= list->size){
+        //Si no existe la posicion se inserta al final
         std::cout<<"No existe la posisicon "<<pos<<". El nodo fue insertado al final de la lista"<<std::endl;
         push_back(list,node);
         return;
     }
     if(pos == 0){
+        //Si la posicion es 0 se inserta al inicio
         push_front(list,node);
         return;
     }
     int aux = 0;
     std::shared_ptr<node_t> aux_node = list->head;
+    //Avanzo hasta llegar a la posicion anterior a la que quiero insertar
     while(aux != pos){
         aux_node = aux_node->next;
         aux++;
@@ -99,6 +102,7 @@ void erase(std::shared_ptr<list_t>& list, int pos){
     int aux = 0;
     std::shared_ptr<node_t> aux_node = list->head;
     if(pos == 0){
+        //Si la posicion es 0 se elimina el primer nodo
         list->head = list->head->next;
         list->size--;
         return;

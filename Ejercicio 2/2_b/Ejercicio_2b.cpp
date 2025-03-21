@@ -4,6 +4,7 @@
 
 enum Labels{DEBUG, INFO, WARNING, ERROR, CRITICAL};
 
+//declaracion de funciones 
 void logMessage(const std::string& error, const std::string& file, int line);
 void logMessage(const std::string& msg, int severity_level);
 void logMessage(const std::string& access_msg, const std::string& user_name);
@@ -17,6 +18,7 @@ int main(){
     logMessage("Prueba CRITICAL",CRITICAL);
     logMessage("Algo salio mal","log.txt",18);
     logMessage("Access Granted","User1");
+    //Prueba de excepciones
     try{
         int a = 20;
         int b = 0;
@@ -25,6 +27,7 @@ int main(){
         }
         std::cout<<a/b<<'\n';
     }catch(const std::exception& e){
+        //Se guarda el mensaje de error en el archivo log.txt
         logMessage(e.what(),"log.txt",25);
         return 1;
     }

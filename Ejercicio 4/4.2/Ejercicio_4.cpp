@@ -4,15 +4,18 @@
 constexpr bool equals(const char* str1, const char* str2, int curr_char=0);
 
 constexpr bool equals(const char* str1, const char* str2,int curr_char){
+    //Si llegue al final de ambos strings, son iguales  
     if(str1[curr_char] == '\0' && str2[curr_char] == '\0'){
         return true;
     }
+    //Si en algun punto no coinciden entonces retorno false
     if(str1[curr_char] != str2[curr_char]){
         return false;
     }else{
         return equals(str1,str2,curr_char+1);
     }
 }
+
 
 int main(){
     //Utilizo const char* en lugar de string ya que al no guardar ningun tipo de metadato es un poco mas rapido
